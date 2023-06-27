@@ -1,0 +1,32 @@
+@page "/pdf-reader"
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<div class="top-bar">
+  <MudFab Color="Color.Secondary" Size="Size.Small" StartIcon="@Icons.Material.Filled.KeyboardArrowLeft" Id="prev-page" />
+  <MudFab Color="Color.Secondary" Size="Size.Small" StartIcon="@Icons.Material.Filled.KeyboardArrowRight" Id="next-page" />
+  <span class="page-info">
+    Page 
+    <MudChip Variant="Variant.Text" Id="page-count">0</MudChip> 
+    of 
+    <MudChip Variant="Variant.Text" Id="page-num">0</MudChip> 
+  </span>
+</div>
+
+<canvas id="pdf-render"></canvas>
+
+@code {
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (firstRender)
+    {
+      @* await JS.InvokeAsync<IJSObjectReference>("import", "./js/pdf.js"); *@
+      await JS.InvokeAsync<IJSObjectReference>("import", "./js/pdf-reader.js");
+    }
+  }
+}
+
+
+
+
+
